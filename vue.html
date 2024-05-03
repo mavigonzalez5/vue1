@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Usuarios!</h1>
+        <div v-for="user in listOfUsers">
+            <p >Usuario: {{user.name}}</p>
+        </div>
+        <button v-on:click="showUsers"> Ver usuarios</button>
+        <button v-on:click="showPremium">Ver Premium</button>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue; 
+        const app = createApp({
+            data() {
+                return {
+                    listOfUsers: [],
+                    
+                };
+            },
+            methods: {
+                showUsers(){
+                    this.listOfUsers = [
+                    { "name": "Fernando", "isPremium": false },
+                        { "name": "María", "isPremium": true },
+                        { "name": "Júlia", "isPremium": true },
+                        { "name": "Marc", "isPremium": false },
+                        { "name": "Patricia", "isPremium": false }
+                    ]
+
+                },
+                showPremium(){
+                    this.listOfUsers = this.listOfUsers.filter(user => user.isPremium === true)
+                }
+            }
+        })
+        app.mount("#app");
+    </script>
+</body>
+</html>
